@@ -16,7 +16,8 @@ $ sudo apt-get update
 $ sudo apt-get -f install
 ```
 
-### Vérification du bon focntionnement de SBT
+### Vérification du bon fonctionnement de SBT
+
 Le package "usb" comprend la distribution Spark 1.3, sbt et un squelette d'application copilable avec sbt. A noter que le cache sbt est déjà chargé avec tout ce qui est nécessaire pour compiler une application Spark.
 
 Pour vérifier le bon fonctionnement de votre installation, nous allons compiler et executer cette application. 

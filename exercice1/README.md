@@ -79,14 +79,14 @@ Ouvrer la [console Web Spark](http://127.0.0.1:4040/) pour voir le job Spark lan
 
 ## Comptez les lignes
 
-```sh
-scala> textFile.count()
+```scala
+scala> textFile.count
 res2: Long = 7
 ```
 
 ## Afficher la première ligne
 
-```sh
+```scala
 scala> textFile.first()
 res3: String = Apache Spark is a fast and general-purpose cluster computing system. It provides high-level APIs in Java, Scala and Python, and an optimized engine that supports general execution graphs. It also supports a rich set of higher-level tools including Spark SQL for SQL and structured data processing, MLlib for machine learning, GraphX for graph processing, and Spark Streaming.
 ```
@@ -95,8 +95,8 @@ res3: String = Apache Spark is a fast and general-purpose cluster computing syst
 
 * La fonction `filter` filtre un element suivant une condition.
 
-```sh
-scala> textFile.filter(line => line.contains("Scala")).count()
+```scala
+scala> textFile.filter(line => line.contains("Scala")).count
 res4: Long = 2
 ```
 
@@ -105,7 +105,7 @@ res4: Long = 2
 * La fonction `map` transforme un element en un autre.
 * La fonction `reduce` agrége les éléments entre eux.
 
-```sh
+```scala
 scala> textFile.map(
   line => line.split(" ").size
 ).reduce(
@@ -120,14 +120,14 @@ res5: Long = 57
 * La fonction `reduceByKey` agrége les éléments entre eux groupés par clé.
 * La fonction `collect` transforme le résultat dans une collection.
 
-```sh
+```scala
 scala> textFile.flatMap(
   line => line.split(" ")
 ).map(
   word => (word, 1)
 ).reduceByKey(
   (a, b) => a + b
-).collect()
+).collect
 res6: Array[(String, Int)] = Array((GraphX,1), (Python,1), (is,3), (runs,2), (general,1), ...
 ```
 

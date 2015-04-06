@@ -44,21 +44,21 @@ Pour lire les fichiers sur Google Cloud, il faut utiliser `gs://`.
 
 apache-access.log fait ~ 800Mo pour 3 500 000 lignes.
 
-```sh
+```
 scala> val apacheaccess = sc.textFile("gs://handsondevoxxfr/apache-access.log")
 apacheaccess: org.apache.spark.rdd.RDD[String] = gs://handsondevoxxfr/apache-access.log MapPartitionsRDD[1] at textFile at <console>:21
 ```
 
 Mettre le RDD en cache.
 
-```sh
+```
 scala> apacheaccess.cache
 res0: apacheaccess.type = gs://handsondevoxxfr/apache-access.log MapPartitionsRDD[1] at textFile at <console>:21
 ```
 
 Compter les lignes.
 
-```sh
+```
 scala> apacheaccess.count
 ...
 15/04/04 15:34:13 INFO scheduler.DAGScheduler: Job 0 finished: count at <console>:24, took 7.874900 s
@@ -67,7 +67,7 @@ res1: Long = 3500001
 
 Pour créer la `case class`, il est préférable d'utiliser le `:paste -raw` qui permet de copier/coller directement du code.
 
-```sh
+```
 scala> :paste -raw
 // Entering paste mode (ctrl-D to finish)
 case class ApacheAccessLog(host: String, client: String, user: String, dateTime: String, method: String,
@@ -92,7 +92,7 @@ defined module ApacheAccessParser
 
 Faites une analyse.
 
-```sh
+```
 scala> apacheaccess.map(ApacheAccessParser.parse).filter(log => log.code == 404).map(log => log.referer).distinct.count
 15/04/04 15:55:08 INFO scheduler.DAGScheduler: Job 2 finished: count at <console>:28, took 6.030779 s
 res4: Long = 504
@@ -100,7 +100,7 @@ res4: Long = 504
 
 Puis une autre.
 
-```sh
+```
 scala> apacheaccess.map(ApacheAccessParser.parse).map(log => (log.code, 1L)).reduceByKey((a, b) => a + b).collect
 15/04/04 15:56:47 INFO scheduler.DAGScheduler: Job 3 finished: collect at <console>:28, took 5.404070 s
 res5: Array[(Integer, Long)] = Array((404,8342), (200,3491315), (500,344))

@@ -1,6 +1,6 @@
 # Exploration avec le Spark-Shell
 
-La première étape est de comprendre les données et dénombrer les valeurs significative. Le spark-shel permet de réaliser cette étape de manière interactive très facilement. 
+La première étape est de comprendre les données et dénombrer les valeurs significative. Le spark-shell permet de réaliser cette étape de manière interactive très facilement. 
 
 ### Ouvrir le spark shell : 
 
@@ -65,7 +65,7 @@ top.foreach(println)
 ### Exercice 
 Quelles sont les durées de sessions, et leurs distributions ? 
 
-```
+```scala
 data.map(l => l.split(",")(0))
     .map(s => (s,1))
     .reduceByKey((a,b) => a+b)
@@ -76,7 +76,7 @@ data.map(l => l.split(",")(0))
 
 Quels sont les services, et leurs distributions ? 
 
-```
+```scala
 data.map(l => l.split(",")(1))
     .map(s => (s,1))
     .reduceByKey((a,b) => a+b)
@@ -87,7 +87,7 @@ data.map(l => l.split(",")(1))
 
 Quels sont les flags, et leurs distributions ?
 
-```
+```scala
 data.map(l => l.split(",")(1))
     .map(s => (s,1))
     .reduceByKey((a,b) => a+b)
@@ -98,7 +98,7 @@ data.map(l => l.split(",")(1))
 
 Quels sont les labels (dernière colonne), et leurs distributions ?
 
-```
+```scala
 //indice de la dernière colonne
 data.take(1)(0)
     .split(',')

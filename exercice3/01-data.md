@@ -2,7 +2,8 @@
 
 Le jeu de données que nous allons utiliser est issu d'un challenge de datascience sur les test d'intrusion réseau. KDD99 est une trace réseau qui a été transformée pour la rendre exploitable, chaque ligne réprésentant une session sur protocole et un service spécifique.
 
-### Fichiers 
+### Fichiers
+
 * kddcup.names : en-têtes de colonnes
 * kddcup10.data : 10% du fichier global (75 MB)
 * kddcup.data : fichier global (750 MB)

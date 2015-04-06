@@ -1,10 +1,10 @@
 # Exploration avec le Spark-SQL
 
-Plutôt que d'écrire du code scala pour requeter les données on peut créer une structure de données et écrire des requetes SQL dessus.
+Plutôt que d'écrire du code scala pour requeter les données, on peut créer une structure de données et écrire des requetes SQL dessus.
 
 ### Créer la structure de données : 
 
-```
+```scala
 import sqlContext.implicits._
 
 var data = sc.textFile("/vagrant/data/kddcup10.data")
@@ -20,7 +20,7 @@ hits.registerTempTable("hits")
 
 ### Requêter avec SQL 
 
-```
+```scala
 val counts = sqlContext.sql("SELECT service, COUNT(*) c FROM hits GROUP BY service ORDER BY c DESC LIMIT 10")
 
 counts.collect().foreach(println)

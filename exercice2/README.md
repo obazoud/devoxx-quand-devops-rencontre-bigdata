@@ -104,7 +104,7 @@ Pour chaque étape:
 
 Chaque classe a une méthode `process` à compléter:
 
-```
+```java
 public xxx process(JavaRDD<String> rdd) {
     return rdd.map(ApacheAccessLog::parse)
         .xxx()
@@ -119,7 +119,7 @@ _Note_:
 
 Une autre écriture en Java 8 serait:
 
-```
+```java
 public xxx process(JavaRDD<String> rdd) {
     return rdd.map(line -> ApacheAccessLog.parse(line))
         .xxx()
@@ -129,7 +129,7 @@ public xxx process(JavaRDD<String> rdd) {
 ```
 
 Et en Java 7:
-```
+```java
 public xxx process(JavaRDD<String> rdd) {
     return rdd.map(new Function<String, ApacheAccessLog>() {
                     @Override
@@ -147,7 +147,7 @@ public xxx process(JavaRDD<String> rdd) {
 
 Chaque `case class` a une méthode `process` à compléter:
 
-```
+```scala
 def process: Long = {
   rdd.map(ApacheAccessLog.parse)
     .xxx
@@ -275,7 +275,7 @@ Pour chaque étape:
 
 Chaque classe a une méthode `process` à compléter:
 
-```
+```java
 public xxx process(JavaRDD<String> rdd, SQLContext sqlContext) {
     JavaRDD<ApacheAccessLog> accessLogs = rdd.map(ApacheAccessLog::parse);
     configure(sqlContext, accessLogs);
@@ -291,7 +291,7 @@ Le `SQLContext` est le point d'entrée pour faire du Spark SQL et ainsi éxécut
 
 #### Scala
 
-```
+```scala
   def process: Xxxx = {
     val dataFrame = sqlContext.createDataFrame(rdd.map(ApacheAccessLog.parse));
     dataFrame.registerTempTable("ApacheAccessLog");
@@ -415,7 +415,7 @@ _ApacheAccessLog_
 
 ## Spark Streaming
 
-Allez encore un effort, c'est preque fini...:)
+Allez encore un effort, c'est presque fini...:)
 
 ### Méthodologie
 
@@ -429,7 +429,7 @@ Allez encore un effort, c'est preque fini...:)
 
 Chaque classe a une méthode `process` à compléter:
 
-```
+```java
 public void process(String hostname, int port, JavaStreamingContext sc) {
     sc.socketTextStream(hostname, port)
         .map(ApacheAccessLog::parse)
@@ -444,7 +444,7 @@ Le `JavaStreamingContext` est le point d'entrée pour les fonctionnalités Spark
 
 `process` est à compléter:
 
-```
+```scala
 def process: Unit = {
   sc.socketTextStream(hostname, port)
     .xxx

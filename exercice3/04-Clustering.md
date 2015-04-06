@@ -1,12 +1,12 @@
 # Utiliser le MLLib pour Clusteriser
 
-Pour regrouper les différentes sessions en fonction de leur comportements nous allons utiliser le K-Means. Spark dispose de MLLib qui permet d'executer de manière distribuée la plupart des algorithmes courants de Machine Learning.
+Pour regrouper les différentes sessions en fonction de leur comportements, nous allons utiliser le K-Means. Spark dispose de MLLib qui permet d'executer de manière distribuée la plupart des algorithmes courants de Machine Learning.
 
 Le K-Means est basé sur le calcul de distances entre des points dans un espace multidimensionnel, et permet de déterminer facilement des classes de similarités.
 
 ### Import MLLib & Co
 
-```
+```scala
 import org.apache.spark.mllib.clustering.KMeans
 import org.apache.spark.mllib.linalg.Vectors
 import scala.collection.mutable.ArrayBuffer
@@ -15,7 +15,7 @@ import scala.collection.mutable.ArrayBuffer
 ### Préparer les données
 Le K-Means ne peut se faire que sur des données numériques, il faut donc extraire celles-ci, et enlever les colonnes textuelles.
 
-```
+```scala
 var data = sc.textFile("/vagrant/data/kddcup10.data")
 
 val vect = data.map { l =>
@@ -35,7 +35,7 @@ vect.take(1)
 ### Apprentissage
 On considère un nombre arbitraire de clusters (10), qu'on va caratériser au travers de 20 itérations. Merci les données en cache !
 
-```
+```scala
 val numClusters = 10
 val numIterations = 20
 val clusters = KMeans.train(vect, numClusters, numIterations)
@@ -61,7 +61,7 @@ println("Within Set Sum of Squared Errors = " + WSSSE)
 ### Prédiction
 Pour chaque enregistrement on le confronte au model pour déterminer sa classe d'appartenance.
 
-```
+```scala
 val affectations = vect.map {l => clusters.predict(l)}
 
 affectations.map(s => (s,1))
@@ -73,7 +73,7 @@ affectations.map(s => (s,1))
 ### Déterminer le K
 Le nombre de classe est souvent l'inconnue, et dans ce cas il faut le déterminer par une démarche itérative. Le K qui donne le meilleur score est le bon !
 
-```
+```scala
 var res = new Array[Double](100);
 var x = 0
 
@@ -87,7 +87,7 @@ for(i <- 2 to 100) {
 ### Avec des colonnes catégorielles
 On souhaite utiliser la colonne service comme critère de segmentation. Il faut la rendre numérique pour qu'elle puisse être utilisée pour calculer une distance.
 
-```
+```scala
 val vect = data.map { l =>
  val buffer = ArrayBuffer[String]()
  val l2 = l.split(",")
@@ -107,7 +107,7 @@ Ce que nous venons de faire est assez naif et reprend les grands principes d'une
 
 * Evaluer les correlations entre colonnes
 * Mesurer l'entropie des colonnes sélectionnées
-* Scaller les colonnes, pour eviter qu'une écrase les autres
+* Scaller les colonnes, pour éviter qu'une écrase les autres
 * Pondérer les colonnes
 * Entrainer le modèle sur un jeu de données et le tester sur un autre.
 * Tester différents paramètres et options.
