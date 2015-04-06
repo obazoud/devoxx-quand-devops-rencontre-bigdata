@@ -29,7 +29,7 @@ hadoop@hadoop-m:~$ pwd
 Lancer le spark-shell.
 
 ```sh
-hadoop@hadoop-m:~$ ./spark-install/bin/spark-shell 
+hadoop@hadoop-m:~$ ./spark-install/bin/spark-shell --master spark://xxxx:7077 --total-executor-cores 4 --executor-memory 2G
 ...
 Welcome to
       ____              __
