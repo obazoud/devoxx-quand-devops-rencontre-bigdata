@@ -29,7 +29,7 @@ Github: https://github.com/obazoud/devoxx-quand-devops-rencontre-bigdata
 
 ### Exercice 3
 
-[Analyse de trame réseaux](exercice3/README.md)
+[Analyse de trame réseaux](exercice3/00-environnement.md)
 
 ### Exercice 4
 
