@@ -50,7 +50,7 @@ Pour les utilisateurs de Java, il faut utiliser la configuration suivante pour M
  % mvn test
 ```
 
-Vérifier que ces valeurs sont prise en compte avec `mvn --version`. Si ce n'est pas le cas, vérifiez votre `mavenrc`
+Vérifier que ces valeurs sont prise en compte avec `mvn --version`. Si ce n'est pas le cas, vérifiez votre `/etc/mavenrc`
 
 Et ne pas oublier de faire pointer votre IDE vers ce repository `/path/to/usb/maven/repository`!
 

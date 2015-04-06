@@ -2,9 +2,35 @@
 
 ## Objectifs
 
-Le but de cet exercice déployer sur le cluster Spark un programme écrit via le REPL.
+Le but de cet exercice déployer sur le cluster (locale ou cloud) Spark un programme écrit via le REPL.
 
-## Connexion au cluster
+## Cluster local
+
+Lancer le master
+
+```sh
+% ./sbin/start-master.sh
+```
+
+Lancer le(s) slave(s)
+
+```sh
+% ./bin/spark-class org.apache.spark.deploy.worker.Worker spark://xxx:7077 --cores 2 --memory 3G
+```
+
+Lancer le spark shell
+
+```sh
+% ./bin/spark-shell --master spark://xxxx:7077
+```
+
+Déployer votre code
+
+```
+./bin/spark-submit --master spark://xxxx:7077 --class fr.devoxx.devops.logs.spark.Spark1 --deploy-mode cluster spark-logs-1.0-SNAPSHOT-jar-with-dependencies.jar /tmp/apache.access.log
+```
+
+## Connexion au cluster cloud
 
 * Aller sur https://console.developers.google.com/project/blast-machine-201504/compute/instances
 * Cliquer sur SSH de la colonne "Connect" sur l'instance " hadoop-m"
