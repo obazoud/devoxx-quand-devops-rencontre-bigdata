@@ -83,6 +83,12 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
+      <groupId>org.apache.spark</groupId>
+      <artifactId>spark-mllib_${org.scala-lang.version}</artifactId>
+      <version>${org.apache.spark.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
       <groupId>net.sf.uadetector</groupId>
       <artifactId>uadetector-resources</artifactId>
       <version>2014.10</version>
