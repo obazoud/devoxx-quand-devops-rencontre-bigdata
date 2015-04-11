@@ -63,6 +63,10 @@ scala> sc.version
 res1: String = 1.3.0
 ```
 
+Ouvrer la [console Web Spark](http://127.0.0.1:4040/) pour voir le job Spark lancé.
+
+![alt tag](https://raw.githubusercontent.com/obazoud/devoxx-quand-devops-rencontre-bigdata/screenshots/spark-web-console1.png)
+
 Maintenant, nous allons charger le fichier `test.txt` qui nous sera utile pour les étapes suivantes.
 Ce fichier représente un texte simple sur plusieurs lignes, et nous allons continuer la prise en main de Spark en faisant quelques analyses simples dessus.
 
@@ -72,11 +76,6 @@ Ce fichier représente un texte simple sur plusieurs lignes, et nous allons cont
 scala> val textFile = sc.textFile("test.txt")
 textFile: org.apache.spark.rdd.RDD[String] = test.txt MapPartitionsRDD[9]
 ```
-
-Ouvrer la [console Web Spark](http://127.0.0.1:4040/) pour voir le job Spark lancé.
-
-![alt tag](https://raw.githubusercontent.com/obazoud/devoxx-quand-devops-rencontre-bigdata/screenshots/spark-web-console1.png)
-
 ## Comptez les lignes
 
 ```scala
@@ -87,7 +86,7 @@ res2: Long = 7
 ## Afficher la première ligne
 
 ```scala
-scala> textFile.first()
+scala> textFile.first
 res3: String = Apache Spark is a fast and general-purpose cluster computing system. It provides high-level APIs in Java, Scala and Python, and an optimized engine that supports general execution graphs. It also supports a rich set of higher-level tools including Spark SQL for SQL and structured data processing, MLlib for machine learning, GraphX for graph processing, and Spark Streaming.
 ```
 

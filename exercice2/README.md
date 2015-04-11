@@ -57,13 +57,13 @@ Et ne pas oublier de faire pointer votre IDE vers ce repository `/path/to/usb/ma
 Voici la commande pour lancer un seul test avec Maven:
 
 ```sh
- % /path/to/usb/maven/bin/mvn -Dtest=Spark1Test test
+ % mvn -Dtest=Spark1Test test
 ```
 
 Pour packager le projet avec un seul jar:
 
 ```sh
-/path/to/usb/maven/bin/mvn clean package assembly:single
+ % mvn clean package assembly:single
 ```
 
 ## SBT
